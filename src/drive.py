@@ -19,12 +19,19 @@ def pull_file(path_tmp, link, name):
     gdd.download_file_from_google_drive(file_id=link, dest_path=path_tmp_main_version)
     with open(path_tmp_main_version, "r") as f:
         if f.readline()[0] == "<":
-            # TO-DO ERROR HANDLING
+            # TODO ERROR HANDLING
             print(f"ERROR DOWNLOADING {link} AT {path_tmp_main_version} TIME OUT")
             exit()
 
 
 def update_version(topic, path, links):
+    """Update csv files
+
+    Args:
+        topic (string): topic to update
+        path (string): path to update
+        links (string): link to download
+    """
     path_local_topic = os.path.join(path, "files", topic)
     path_tmp = os.path.join(path, "tmp")
 
@@ -42,7 +49,7 @@ def update_version(topic, path, links):
     architecture_online = list(online_version.keys())
     download_link = online_version["link"]
 
-    architecture_online = list(online_version.keys())[1:]  # First ellement is link
+    architecture_online = list(online_version.keys())[1:]  # First element is link
 
     not_downloaded = True
 
@@ -55,7 +62,3 @@ def update_version(topic, path, links):
                 link_dictionary = utils.convert_file_to_dictionary(path_tmp_topic, "topics_links.csv")
             print(f"{sub_topic} in {topic} not up to date")
             pull_file(path_tmp_topic, link_dictionary[sub_topic], str(sub_topic)+".csv")
-
-        
-
-    

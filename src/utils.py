@@ -1,8 +1,9 @@
 import os
 import csv
 import shutil
-import distutils
 
+import distutils
+from distutils import dir_util
 
 def mkdir(path):
     """Create a Directory
@@ -48,7 +49,7 @@ def create_architecture(path, expected):
     return True
 
 
-def verify_architecture(path, expected):
+def verify_and_update_architecture(path, expected):
     """Verify the architecture and update it
 
     Args:
@@ -107,7 +108,12 @@ def verify_version(local :dict, online :dict, topic):
         bool: the local version is outdated
     """
     if topic in local:
-        return online[topic] > local[topic]
+        if int(online[topic]) < int(local[topic]):
+            print("VERSION LOCAL AHEAD, ABORTING")
+            delete_folder(os.path.join(os.getcwd(), "tmp"))
+            exit()
+            #TODO ERRORS
+        return int(online[topic]) > int(local[topic])
     return True
 
 
@@ -126,6 +132,67 @@ def delete_folder(path):
     return False
 
 
-def handle_tmp(path, path_tmp):
-    path_files = os.path.join(path, "files")
-    delete_folder(files)
+def handle_tmp(path_files, path_tmp):
+    """Copy tmp files and remove tmp folder
+
+    Args:
+        path_files (string): path to files
+        path_tmp (string): path to tmp
+    """
+    distutils.dir_util.copy_tree(path_tmp, path_files)
+    delete_folder(path_tmp)
+
+
+def dictionary_to_csv(path, name, dictionary :dict):
+    """Save a dictionary to csv
+
+    Args:
+        path (string): path to save
+        name (string): name to save
+        dictionary (dict): dictionary to save
+    """
+    path_csv = os.path.join(path, name)
+    with open(path_csv, "w") as f_csv:
+        for key in dictionary.keys():
+            f_csv.write("%s,%s\n"%(key,dictionary[key]))
+        
+
+def update_version(path_files):
+    """Update version with update.csv file
+
+    Args:
+        path_files (string): path to load file
+    """
+    path_update = os.path.join(path_files, "update.csv")
+
+    if not os.path.exists(path_update):
+        with open(path_update, "w"):
+            pass
+        return
+
+    path_version = os.path.join(path_files, "versions.csv")
+    topics, sub_topics = [], []
+    with open(path_update, "r") as f_update:
+        reader = csv.reader(f_update, delimiter=',')
+        for row in reader:
+            topics.append(row[0])
+            sub_topics.append(row[1:])
+    if topics:
+        version = convert_file_to_dictionary(path_files, "versions.csv")
+        index = 0
+        for topic in topics:
+            version[topic] = str(int(version[topic])+1)
+            path_sub_topic = os.path.join(path_files, topic)
+            sub_version = convert_file_to_dictionary(path_sub_topic, "versions.csv")
+            for sub_topic in sub_topics[index]:
+                if sub_topic != "link":
+                    sub_version[sub_topic] = str(int(sub_version[sub_topic])+1)
+            dictionary_to_csv(path_sub_topic, "versions.csv", sub_version)
+            index += 1
+
+        version["main"] = str(int(version["main"])+1)
+
+        dictionary_to_csv(path_files, "versions.csv", version)
+    os.remove(path_update)
+    with open(path_update, "w"):
+        pass
