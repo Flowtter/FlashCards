@@ -4,6 +4,7 @@ import shutil
 
 import distutils
 from distutils import dir_util
+import error
 
 def mkdir(path):
     """Create a Directory
@@ -109,10 +110,8 @@ def verify_version(local :dict, online :dict, topic):
     """
     if topic in local:
         if int(online[topic]) < int(local[topic]):
-            print("VERSION LOCAL AHEAD, ABORTING")
             delete_folder(os.path.join(os.getcwd(), "tmp"))
-            exit()
-            #TODO ERRORS
+            raise error.VersionAhead("VERSION LOCAL AHEAD, ABORTING")
         return int(online[topic]) > int(local[topic])
     return True
 

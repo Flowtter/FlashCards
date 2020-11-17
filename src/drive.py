@@ -2,6 +2,7 @@ import os
 from google_drive_downloader import GoogleDriveDownloader as gdd
 import utils
 
+import error
 
 def pull_file(path_tmp, link, name):
     """Pull a GDRIVE file
@@ -19,9 +20,7 @@ def pull_file(path_tmp, link, name):
     gdd.download_file_from_google_drive(file_id=link, dest_path=path_tmp_main_version)
     with open(path_tmp_main_version, "r") as f:
         if f.readline()[0] == "<":
-            # TODO ERROR HANDLING
-            print(f"ERROR DOWNLOADING {link} AT {path_tmp_main_version} TIME OUT")
-            exit()
+            raise error.TimeOut(f"ERROR DOWNLOADING {link} AT {path_tmp_main_version} TIME OUT")
 
 
 def update_version(topic, path, links):
