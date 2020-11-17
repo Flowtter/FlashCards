@@ -1,6 +1,7 @@
 import os
 import csv
 import shutil
+import distutils
 
 
 def mkdir(path):
@@ -71,16 +72,17 @@ def verify_architecture(path, expected):
         return True
 
 
-def convert_version_to_dictionary(path):
-    """Convert version.csv to dictionary
+def convert_file_to_dictionary(path, name):
+    """Convert file.csv to dictionary
 
     Args:
         path (string): path to load
+        path (name): name to save
 
     Returns:
         dict: dictionary
     """
-    path_file = os.path.join(path, "versions.csv")
+    path_file = os.path.join(path, name)
     if not os.path.exists(path_file):
         with open(path_file, "w") as f_version:
             f_version.write("main,0")
@@ -93,7 +95,7 @@ def convert_version_to_dictionary(path):
     return dictionary
 
 
-def verify_version(local, online, topic):
+def verify_version(local :dict, online :dict, topic):
     """Verify that local version is up to date
 
     Args:
@@ -109,8 +111,8 @@ def verify_version(local, online, topic):
     return True
 
 
-def delete_tmp(path):
-    """Delete tmp folder
+def delete_folder(path):
+    """Delete folder folder
 
     Args:
         path (string): path to delete
@@ -118,8 +120,12 @@ def delete_tmp(path):
     Returns:
         bool: sucess
     """
-    path_tmp = os.path.join(path, "tmp")
-    if os.path.exists(path_tmp):
-        shutil.rmtree(path_tmp, ignore_errors=True)
+    if os.path.exists(path):
+        shutil.rmtree(path, ignore_errors=True)
         return True
     return False
+
+
+def handle_tmp(path, path_tmp):
+    path_files = os.path.join(path, "files")
+    delete_folder(files)

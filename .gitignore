@@ -1,4 +1,5 @@
 files/
+debug/
 
 .DS_Store
 .huskyrc.json
