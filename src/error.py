@@ -9,6 +9,7 @@ class VersionAhead(Error):
     def __init__(self, message):
         self.message = message
 
+
 class TimeOut(Error):
     """Download resulted with a time out"""
 

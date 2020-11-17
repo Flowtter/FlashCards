@@ -12,6 +12,9 @@ def pull_file(path_tmp, link, name):
         link (string): link to download
         name (string): name to save
     """
+    if link == "NONE":
+        print("LINK == NONE, SKIPPING")
+        return
     path_tmp_main_version = os.path.join(path_tmp, name)
 
     if not utils.verify_folder(path_tmp):

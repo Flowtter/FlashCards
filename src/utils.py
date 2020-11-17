@@ -185,7 +185,13 @@ def update_version(path_files):
             sub_version = convert_file_to_dictionary(path_sub_topic, "versions.csv")
             for sub_topic in sub_topics[index]:
                 if sub_topic != "link":
-                    sub_version[sub_topic] = str(int(sub_version[sub_topic])+1)
+                    if not sub_version.__contains__(sub_topic):
+                        print(f"{sub_topic} not in versions.csv, add link in topics_links.csv")
+                        sub_version[sub_topic] = 0
+                        with open(os.path.join(path_sub_topic, "topics_links.csv"), "a") as f_topics_links:
+                            f_topics_links.write(f"\n{sub_topic},NONE")
+                    else:
+                        sub_version[sub_topic] = str(int(sub_version[sub_topic])+1)
             dictionary_to_csv(path_sub_topic, "versions.csv", sub_version)
             index += 1
 

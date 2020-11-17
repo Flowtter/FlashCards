@@ -9,7 +9,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument("command")
 args = parser.parse_args()
 
-
 path = os.getcwd()
 path_files = os.path.join(path, "files")
 path_tmp = os.path.join(path, "tmp")
