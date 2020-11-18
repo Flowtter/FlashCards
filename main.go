@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"fmt"
 	"io/ioutil"
+	"os/exec"
 	"path"
 	
 	"github.com/gin-gonic/contrib/static"
@@ -52,6 +53,18 @@ func main() {
 	router.GET("/subject/:name", func(c *gin.Context) {
 		name := path.Join("files", subject, c.Param("name") + ".csv")
 		response(c, http.StatusOK, nil, readFile(name))
+	})
+
+	router.GET("/refresh/", func(c *gin.Context) {
+		fmt.Println("Running python")
+		cmd := exec.Command("python3", "./src/exec.py")
+		_, err := cmd.Output()
+		if err != nil {
+			response(c, http.StatusInternalServerError, nil, "refreshed error: time out")
+			println(err.Error())
+			return
+		}
+		response(c, http.StatusOK, nil, "refreshed")
 	})
 
 	router.Use(static.Serve("/", static.LocalFile("ui", true)))

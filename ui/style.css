@@ -89,3 +89,20 @@
 .button.green {
     background-color: green;
 }
+
+.loader {
+    border: 16px solid var(--light-gray); 
+    border-top: 16px solid var(--blue); 
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 10%; left: 45%;
+    display: none;
+}
+  
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

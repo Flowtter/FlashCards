@@ -23,6 +23,7 @@ def pull_file(path_tmp, link, name):
     gdd.download_file_from_google_drive(file_id=link, dest_path=path_tmp_main_version)
     with open(path_tmp_main_version, "r") as f:
         if f.readline()[0] == "<":
+            utils.delete_folder(path_tmp)
             raise error.TimeOut(f"ERROR DOWNLOADING {link} AT {path_tmp_main_version} TIME OUT")
 
 

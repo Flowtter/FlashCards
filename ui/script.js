@@ -4,7 +4,29 @@ var actual = 0;
 var question_show_state = false;
 
 function refresh() {
+    console.log("Refreshing!")
 
+    var loader = document.getElementById("topic-container");
+    questions = [];
+    answers = [];
+    var container = document.getElementById("topic-container");
+    container.innerHTML = "";
+    container = document.getElementById("sub-topic-container");
+    container.innerHTML = "";
+    container = document.getElementById("game-main-container");
+    container.style.display = "none";
+
+    var loader = document.getElementById("loader");
+    loader.style.display = "flex";
+
+    axios.get("/refresh/")
+    .then(function (reponse){refreshed(reponse.data.payload);})
+}
+
+function refreshed(data) {
+    var loader = document.getElementById("loader");
+    loader.style.display = "none";
+    console.log("Refreshed!")
 }
 
 function fetch_request() {
