@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <button onclick="fetch_request()">Go</button>
+    <div id ="container">
+        <div class="topic-container" id="topic-container">
+        </div>
+        <div class="sub-topic-container" id="sub-topic-container">
+        </div>
+    </div>
+    <div class="game-main-container" id="game-main-container">
+        <div class="game-container">
+            <div class="game-question">
+                </div>
+            <div class="game-buttons">
+                <div class="button green">right</div>
+                <div class="button orange">right</div>
+                <div class="button red">right</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
