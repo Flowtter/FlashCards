@@ -1,7 +1,7 @@
 :root {
     --snow: #fafafa;
-    --blue: #4a95fa;
-    --dark-gray: #24292e;
+    --blue: #3498db;
+    --dark-gray: #101010;
     --light-gray: #31363f;
 }
 
@@ -43,7 +43,6 @@
     height: 90vh;
     display: none;
     justify-content: center;
-
     font-size: 2vw;
 }
 
@@ -58,17 +57,18 @@
 }
 
 
-
 .game-question {
-    height: 80%;
+    margin-top: 25px;
+    height: 70%;
 }
+
 
 .game-buttons {
     height: 20%;
-    
     display: flex;
     justify-content: center;
 }
+
 
 .button {
     margin-left: 3vw;
@@ -76,8 +76,8 @@
     height: 10vh;
     width: 10vw;
     border-radius: 16px;
-
 }
+
 .button.red {
     background-color: red;
 }
