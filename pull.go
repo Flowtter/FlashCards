@@ -14,7 +14,7 @@ import (
 func compareVersions(versionOnline string) (bool, error) {
 	versionLocal, err := ioutil.ReadFile("version.txt")
 	if err != nil {
-		return false, err
+		versionLocal = []byte("0")
 	}
 	local, err := strconv.Atoi(string(versionLocal))
 	if err != nil {
