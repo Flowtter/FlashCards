@@ -2,6 +2,9 @@ files/
 debug/
 .env
 flashcards
+version.txt
+src/
+files.zip
 
 
 .DS_Store

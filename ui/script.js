@@ -5,7 +5,6 @@ var question_show_state = false;
 
 function refresh() {
     console.log("Refreshing!")
-
     var loader = document.getElementById("topic-container");
     questions = [];
     answers = [];
@@ -19,7 +18,7 @@ function refresh() {
     var loader = document.getElementById("loader");
     loader.style.display = "flex";
 
-    axios.get("/refresh/")
+    axios.get("/refresh")
     .then(function (reponse){refreshed(reponse.data.payload);})
 }
 
@@ -38,7 +37,7 @@ function fetch_request() {
     container.innerHTML = "";
     container = document.getElementById("game-main-container");
     container.style.display = "none";
-    axios.get("/fetch/")
+    axios.get("/fetch")
     .then(function (reponse){fetch(reponse.data.payload, 'topic-container');})
 }
 
@@ -66,6 +65,8 @@ function createBubble(text, container) {
 }
 
 function fetch_subtopic(name) {
+    console.log("fetching!")
+    console.log("/sub_topic/" + name)
     var node = document.getElementById('sub-topic-container');
     node.innerHTML = "";
     axios.get("/sub_topic/" + name)
@@ -73,6 +74,7 @@ function fetch_subtopic(name) {
 }
 
 function startGame(data) {
+    console.log(data)
     var cards = data.split('\n');
     for (i = 0; i < cards.length; i++) {
         split = cards[i].split(',')
