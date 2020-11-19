@@ -42,7 +42,8 @@ function fetch_request() {
 }
 
 function fetch(data, container) {
-    var datas = data.split('\n')
+    console.log(data);
+    var datas = data.split('\n');
     var i;
     for (i = 1; i < datas.length; i++) {
         datas[i] = datas[i].split(",")[0];
@@ -65,7 +66,7 @@ function createBubble(text, container) {
 }
 
 function fetch_subtopic(name) {
-    console.log("fetching!")
+    console.log("fetching subtopics!")
     console.log("/sub_topic/" + name)
     var node = document.getElementById('sub-topic-container');
     node.innerHTML = "";
