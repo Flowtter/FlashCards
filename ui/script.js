@@ -80,8 +80,7 @@ function startGame(data) {
     for (i = 0; i < cards.length-1; i++) {
         split = cards[i].split(',');
         questions.push(split[0].replaceAll(';', '<br>'));
-        console.log(cards[i].replaceAll(';', '<br>'));
-        answers.push(split[1]);
+        answers.push(split[1].replaceAll(';', '<br>'));
     }
     
     new_question();
