@@ -79,8 +79,8 @@ function startGame(data) {
     var cards = data.split('\n');
     for (i = 0; i < cards.length-1; i++) {
         split = cards[i].split(',');
-        questions.push(split[0].replaceAll(';', '<br>').replaceAll('\"', ''));
-        answers.push(split[1].replaceAll(';', '<br>').replaceAll('\"', ''));
+        questions.push(split[0].replaceAll(';', '<br>'));
+        answers.push(split[1].replaceAll(';', '<br>'));
     }
     
     new_question();
