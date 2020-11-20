@@ -11,6 +11,5 @@
     FROM alpine
     COPY --from=builder /flashcards /flashcards
     COPY --from=builder /app/ui /ui
-    COPY --from=builder /app/assets /assets
 
     ENTRYPOINT /flashcards
