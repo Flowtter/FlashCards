@@ -4,7 +4,7 @@ var actual = 0;
 var question_show_state = false;
 
 function refresh() {
-    console.log("Refreshing!")
+    console.log("Refreshing!");
     var loader = document.getElementById("topic-container");
     questions = [];
     answers = [];
@@ -19,13 +19,13 @@ function refresh() {
     loader.style.display = "flex";
 
     axios.get("/refresh")
-    .then(function (reponse){refreshed(reponse.data.payload);})
+    .then(function (reponse){refreshed(reponse.data.payload);});
 }
 
 function refreshed(data) {
     var loader = document.getElementById("loader");
     loader.style.display = "none";
-    console.log("Refreshed!")
+    console.log("Refreshed!");
 }
 
 function fetch_request() {
@@ -66,8 +66,8 @@ function createBubble(text, container) {
 }
 
 function fetch_subtopic(name) {
-    console.log("fetching subtopics!")
-    console.log("/sub_topic/" + name)
+    console.log("fetching subtopics!");
+    console.log("/sub_topic/" + name);
     var node = document.getElementById('sub-topic-container');
     node.innerHTML = "";
     axios.get("/sub_topic/" + name)
@@ -75,13 +75,15 @@ function fetch_subtopic(name) {
 }
 
 function startGame(data) {
-    console.log(data)
+    //console.log(data);
     var cards = data.split('\n');
-    for (i = 0; i < cards.length; i++) {
-        split = cards[i].split(',')
-        questions.push(split[0])
-        answers.push(split[1])
+    for (i = 0; i < cards.length-1; i++) {
+        split = cards[i].split(',');
+        questions.push(split[0].replaceAll(';', '<br>'));
+        console.log(cards[i].replaceAll(';', '<br>'));
+        answers.push(split[1]);
     }
+    
     new_question();
 }
 
@@ -93,7 +95,7 @@ function fetch_subject(name) {
     container = document.getElementById("game-main-container");
     container.style.display = "flex";
     axios.get("/subject/" + name)
-    .then(function (reponse){startGame(reponse.data.payload);})
+    .then(function (reponse){startGame(reponse.data.payload);});
 }
 
 function getRandomInt(max) {
@@ -102,11 +104,11 @@ function getRandomInt(max) {
 
 
 function new_question() {
-    console.log(questions)
-    console.log(answers)
+    console.log(questions);
+    console.log(answers);
     if (questions.length != 0) {
         question_show_state = false;
-        actual = getRandomInt(questions.length)
+        actual = getRandomInt(questions.length);
         var question = document.getElementById('game-question');
         question.innerHTML = questions[actual];
     } else {
@@ -117,7 +119,7 @@ function new_question() {
 function display() {
     if (questions.length != 0) {
         var text = document.getElementById('game-question');
-        console.log(question_show_state)
+        console.log(question_show_state);
         if (question_show_state) {
             text.innerHTML = questions[actual];
             question_show_state = false;
