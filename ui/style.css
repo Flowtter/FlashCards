@@ -98,6 +98,9 @@ button {
 
 
 .game-question {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
     margin-left: 5%;
     margin-right: 5%;
     height: 65%;
