@@ -52,7 +52,7 @@ function fetch(data, container) {
 }
 
 function createBubble(text, container) {
-    var bubble = document.createElement("div");
+    var bubble = document.createElement("button");
     bubble.className = "bubble";
     if (container == 'topic-container'){
         bubble.setAttribute("onclick",`fetch_subtopic("${text}")`);

@@ -29,6 +29,12 @@
     text-align: center;
     border-radius: 16px;
     background-color: var(--blue);
+    color:var(--snow);
+    text-transform: uppercase;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    font-size: 1em;
 }
 
 .sub-topic-container {
@@ -78,6 +84,9 @@
     height: 10vh;
     width: 10vw;
     border-radius: 16px;
+    outline: none;
+    cursor: pointer;
+    border: none;
 }
 
 .button.red {
