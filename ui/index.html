@@ -7,15 +7,23 @@
     <script src="script.js"></script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
 </head>
 <body>
-    <button onclick="fetch_request()">Go</button>
-    <button onclick="refresh()">Refresh</button>
+    <div class="line">
+        <button onclick="fetch_request()">Go</button>
+        <button onclick="refresh()">Refresh</button>
+        <button onclick="contact()">Contact</button>
+        <div></div>
+    </div>
+
     <div class="loader" id="loader"></div>
     <div id ="container">
         <div class="topic-container" id="topic-container">
         </div>
-        <div class="sub-topic-container" id="sub-topic-container">
+        <div class="topic-container" id="sub-topic-container">
         </div>
     </div>
     <div class="game-main-container" id="game-main-container">
@@ -23,10 +31,11 @@
             <p class="game-question" id="game-question">
             </p>
             <div class="game-buttons">
-                <button class="button red" onclick="new_question()"></button>
-                <button class="button orange" onclick="display()"></button>
-                <button class="button green" onclick="correct()"></button>
+                <button class="b red" onclick="new_question()">Mauvaise réponse</button>
+                <button class="b orange" onclick="display()">Montrer la réponse</button>
+                <button class="b green" onclick="correct()">Bonne réponse</button>
             </div>
+            <p class="made">Made with <span class="heart">❤</span> by Brice</p>
         </div>
     </div>
 </body>

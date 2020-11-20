@@ -2,9 +2,13 @@ var questions = [];
 var answers = [];
 var actual = 0;
 var question_show_state = false;
+var refreshing = false;
+var size_deck;
+var points;
 
 function refresh() {
     console.log("Refreshing!");
+    refreshing = true;
     var loader = document.getElementById("topic-container");
     questions = [];
     answers = [];
@@ -25,10 +29,15 @@ function refresh() {
 function refreshed(data) {
     var loader = document.getElementById("loader");
     loader.style.display = "none";
+    refreshing = false;
     console.log("Refreshed!");
 }
 
 function fetch_request() {
+    if (refreshing){
+        console.log("still refreshing");
+        return;
+    }
     questions = [];
     answers = [];
     var container = document.getElementById("topic-container");
@@ -45,9 +54,10 @@ function fetch(data, container) {
     console.log(data);
     var datas = data.split('\n');
     var i;
-    for (i = 1; i < datas.length; i++) {
-        datas[i] = datas[i].split(",")[0];
-        createBubble(datas[i], container);
+    for (i = 0; i < datas.length; i++) {
+        if (data[i]){
+            createBubble(datas[i], container);
+        }
     }
 }
 
@@ -77,12 +87,13 @@ function fetch_subtopic(name) {
 function startGame(data) {
     //console.log(data);
     var cards = data.split('\n');
-    for (i = 0; i < cards.length-1; i++) {
+    size_deck = cards.length;
+    points = 0;
+    for (i = 0; i < cards.length; i++) {
         split = cards[i].split(',');
         questions.push(split[0].replaceAll(';', '<br>'));
         answers.push(split[1].replaceAll(';', '<br>'));
     }
-    
     new_question();
 }
 
@@ -131,13 +142,19 @@ function display() {
 
 function no_more_cards() {
     var text = document.getElementById('game-question');
-    text.innerHTML = "no more cards";
+    text.innerHTML = "  Félicitation!";
 }
 
 function correct() {
+    points++;
+    console.log(points, size_deck);
     answers[actual] = answers[answers.length-1];
     questions[actual] = questions[questions.length-1];
     answers.pop();
     questions.pop();
     new_question();
 }
+
+function contact() {
+    windowObjectReference = window.open("https://naexys.netlify.app/english/main");
+  }

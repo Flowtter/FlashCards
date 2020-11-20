@@ -5,7 +5,7 @@ flashcards
 version.txt
 src/
 files.zip
-
+.vscode/
 
 .DS_Store
 .huskyrc.json
