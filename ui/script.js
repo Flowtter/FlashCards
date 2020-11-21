@@ -91,11 +91,25 @@ function startGame(data) {
     points = 0;
     for (i = 0; i < cards.length; i++) {
         split = cards[i].split(',');
-        questions.push(split[0].replaceAll(';', '<br>').replaceAll('§', ','));
-        answers.push(split[1].replaceAll(';', '<br>').replaceAll('§', ','));
+        var q = split[0].replaceAll(';', '<br>').replaceAll('§', ',').replaceAll('µ', ';');
+        var a = split[1].replaceAll(';', '<br>').replaceAll('§', ',').replaceAll('µ', ';');
+        //q = exponent(q);
+        //a = exponent(a);
+        questions.push(q);
+        answers.push(a);
     }
     new_question();
 }
+
+//function exponent(str) {
+//    while (str.includes("^")) {
+//        var i = str.indexOf("^");
+//        var value = str[i+1]
+//        str = str.replace("^", `<sup>${value}</sup>`);
+//        return str;
+//    }
+//    return str;
+//}
 
 function fetch_subject(name) {
     var container = document.getElementById("topic-container");
