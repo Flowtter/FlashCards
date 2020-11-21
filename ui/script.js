@@ -91,8 +91,8 @@ function startGame(data) {
     points = 0;
     for (i = 0; i < cards.length; i++) {
         split = cards[i].split(',');
-        questions.push(split[0].replaceAll(';', '<br>'));
-        answers.push(split[1].replaceAll(';', '<br>'));
+        questions.push(split[0].replaceAll(';', '<br>').replaceAll('§', ','));
+        answers.push(split[1].replaceAll(';', '<br>').replaceAll('§', ','));
     }
     new_question();
 }
