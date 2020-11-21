@@ -34,6 +34,11 @@ sup {
     font-size: 0.5em;
 }
 
+.info {
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
 .line{
     width: 100%;
     height: 50px;
@@ -91,6 +96,9 @@ sup {
     justify-content: center;
     font-size: 2vw;
 }
+.game-main-container.id {
+    display: flex;
+}
 
 .game-container {
     width: 75vw;
@@ -104,13 +112,18 @@ sup {
 
 .game-question {
     display: flex;
-    justify-content: center; /* align horizontal */
-    align-items: center; /* align vertical */
+    justify-content: center; 
+    align-items: center; 
     margin-left: 5%;
     margin-right: 5%;
     height: 65%;
 }
 
+.game-question.id {
+    text-align: left;
+    margin-top: 0px;
+    font-size: 0.7em;
+}
 
 .game-buttons {
     margin-bottom: 5%;
@@ -210,5 +223,8 @@ sup {
 @media screen and (max-height: 570px) {
     .made {
         display: none;
+    }
+    .game-question.id {
+        font-size: 0.6em;
     }
 }

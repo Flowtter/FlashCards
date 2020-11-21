@@ -7,6 +7,7 @@ var size_deck;
 var points;
 
 function refresh() {
+    document.getElementById("intro").style.display ="none";
     console.log("Refreshing!");
     refreshing = true;
     var loader = document.getElementById("topic-container");
@@ -34,6 +35,7 @@ function refreshed(data) {
 }
 
 function fetch_request() {
+    document.getElementById("intro").style.display ="none";
     if (refreshing){
         console.log("still refreshing");
         return;
