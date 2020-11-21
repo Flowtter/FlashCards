@@ -93,6 +93,9 @@ function startGame(data) {
         split = cards[i].split(',');
         var q = split[0].replaceAll(';', '<br>').replaceAll('§', ',').replaceAll('µ', ';');
         var a = split[1].replaceAll(';', '<br>').replaceAll('§', ',').replaceAll('µ', ';');
+        if (q[0] == "*") {
+            q = q.slice(1, q.length-1);
+        }
         //q = exponent(q);
         //a = exponent(a);
         questions.push(q);
