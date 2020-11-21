@@ -5,6 +5,7 @@
     --hover-blue: #2980b9;
     --dark-gray: #19242e;
     --light-gray: #34495e;
+    --light-gray-sub: #2a3b4d;
     --green: #2ecc71;
     --green-hover: #10dc7a;
     --red: #e74c3c;
@@ -37,6 +38,8 @@ sup {
 .info {
     font-weight: bold;
     font-size: 0.8em;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .line{
@@ -89,6 +92,14 @@ sup {
     background-color: var(--hover-blue);
 }
 
+
+.bubble.sub {
+    background-color: var(--light-gray);
+}
+
+.bubble.sub:hover {
+    background-color: var(--light-gray-sub);
+}
 .game-main-container {
     margin-top: 5px;
     height: 90vh;
@@ -218,13 +229,28 @@ sup {
     .made {
         font-size: 1.75em;
     }
+    .game-question.id {
+        font-size: 1em;
+    }
+    .info {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (max-width: 600px) and (min-height: 900px){
+    
+    .game-question.id {
+        font-size: 1.5em;
+    }
+    .info {
+        font-weight: bold;
+        font-size: 1.6em;
+    }
 }
 
 @media screen and (max-height: 570px) {
     .made {
         display: none;
-    }
-    .game-question.id {
-        font-size: 0.6em;
     }
 }
