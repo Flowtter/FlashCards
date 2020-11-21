@@ -46,13 +46,11 @@ func main() {
 	router.GET("/sub_topic/:name", func(c *gin.Context) {
 		name := path.Join("files", c.Param("name"), "sub_topics.txt")
 		subject = c.Param("name")
-		fmt.Println(readFile(name))
 		response(c, http.StatusOK, nil, readFile(name))
 	})
 
 	router.GET("/subject/:name", func(c *gin.Context) {
 		name := path.Join("files", subject, c.Param("name")+".csv")
-		fmt.Println(readFile(name))
 		response(c, http.StatusOK, nil, readFile(name))
 	})
 
