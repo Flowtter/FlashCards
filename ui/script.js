@@ -176,5 +176,5 @@ function correct() {
 }
 
 function contact() {
-    windowObjectReference = window.open("https://naexys.netlify.app/english/main");
+    windowObjectReference = window.open("https://flowtter.netlify.app/english/main");
   }
