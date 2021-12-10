@@ -30,7 +30,7 @@ func compareVersions(versionOnline string) (bool, error) {
 func pull() {
 	link_version := "https://drive.google.com/uc?export=download&id=1EW_ERNC4XekIBliI6hi737fxKVnq9FJw"
 	link_zip := "https://drive.google.com/uc?export=download&id=1HOX5xaqt3wYyqNDn4n6wcu2ryrVyZ0ny"
-	versionOnline, err := fetchVersion("version_online.txt", link_version)
+	versionOnline, err := fetchVersion(link_version)
 	if err != nil {
 		fmt.Println("Fetch error")
 		return
@@ -75,7 +75,7 @@ func pull() {
 	}
 }
 
-func fetchVersion(filepath string, url string) (string, error) {
+func fetchVersion(url string) (string, error) {
 	// Get the data
 	resp, err := http.Get(url)
 	if err != nil {
